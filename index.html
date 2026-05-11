@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panduan Publish Google Sites</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-dark:  #1B5E20;
+    --green:       #2E7D32;
+    --green-mid:   #388E3C;
+    --green-light: #E8F5E9;
+    --green-pale:  #F1F8F1;
+    --teal:        #00695C;
+    --teal-light:  #E0F2F1;
+    --gold:        #F57F17;
+    --gold-light:  #FFF8E1;
+    --red:         #C62828;
+    --red-light:   #FFEBEE;
+    --grey:        #ECEFF1;
+    --grey-mid:    #90A4AE;
+    --dark:        #1C2B1E;
+    --text:        #2E3D2F;
+    --text-muted:  #607D63;
+    --white:       #FFFFFF;
+    --radius:      12px;
+    --radius-sm:   8px;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: #F4F6F4;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 20px 40px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--green-dark);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    right: -40px; top: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    right: 40px; bottom: -60px;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .header-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: #A5D6A7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header-sub {
+    color: #A5D6A7;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* ── CHECKLIST BOX ── */
+  .checklist-box {
+    background: var(--gold-light);
+    border: 1.5px solid #FFE082;
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 20px;
+  }
+  .checklist-box-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .check-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 16px;
+  }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: #5D4037;
+  }
+  .check-box {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #F9A825;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 24px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--green-light);
+  }
+
+  /* ── STEP CARD ── */
+  .step-card {
+    background: var(--white);
+    border: 1px solid #DCEDC8;
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: var(--green-pale);
+    border-bottom: 1px solid #DCEDC8;
+  }
+  .step-num {
+    width: 34px;
+    height: 34px;
+    background: var(--green);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-num.publish { background: var(--gold); }
+  .step-num.done    { background: var(--teal); }
+
+  .step-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark);
+  }
+  .step-emoji {
+    font-size: 18px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  .step-body {
+    padding: 14px 18px;
+  }
+
+  /* ── UI MOCKUP ── */
+  .ui-mock {
+    background: #F8F9FA;
+    border: 1px solid #DEE2E6;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin: 10px 0;
+  }
+  .ui-mock-bar {
+    background: #3C4043;
+    padding: 7px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .ui-mock-bar-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+  .ui-mock-bar-url {
+    background: #5F6368;
+    border-radius: 4px;
+    height: 16px;
+    flex: 1;
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+  }
+  .ui-mock-bar-url span {
+    color: #9AA0A6;
+    font-size: 10px;
+    font-family: monospace;
+  }
+  .ui-mock-body {
+    padding: 12px;
+  }
+
+  /* Google Sites toolbar mock */
+  .gs-toolbar {
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .gs-logo {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1A73E8;
+  }
+  .gs-title-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 13px;
+    color: #3c4043;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  .gs-publish-btn {
+    background: #1A73E8;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  .gs-publish-btn.highlight {
+    background: var(--green);
+    box-shadow: 0 0 0 3px #A5D6A7;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 3px #A5D6A7; }
+    50% { box-shadow: 0 0 0 6px #C8E6C9; }
+  }
+  .gs-nav {
+    display: flex;
+    gap: 2px;
+    padding: 6px 12px;
+    background: #f1f3f4;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .gs-nav-tab {
+    padding: 4px 12px;
+    border-radius: 4px 4px 0 0;
+    font-size: 12px;
+    color: #5f6368;
+  }
+  .gs-nav-tab.active {
+    background: #fff;
+    color: #1A73E8;
+    font-weight: 600;
+    border: 1px solid #e0e0e0;
+    border-bottom: 1px solid #fff;
+  }
+  .gs-canvas {
+    padding: 16px;
+    min-height: 80px;
+  }
+  .gs-page-panel {
+    background: #f8f9fa;
+    border-right: 1px solid #e0e0e0;
+    padding: 8px;
+    min-width: 110px;
+    font-size: 11px;
+  }
+  .gs-page-item {
+    padding: 5px 8px;
+    border-radius: 4px;
+    color: #5f6368;
+    cursor: pointer;
+  }
+  .gs-page-item.active {
+    background: #E8F0FE;
+    color: #1A73E8;
+    font-weight: 600;
+  }
+  .gs-page-add {
+    color: #1A73E8;
+    padding: 5px 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .gs-flex {
+    display: flex;
+  }
+
+  /* ── INSTRUCTION ITEMS ── */
+  .step-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 6px;
+  }
+  .step-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    font-size: 13.5px;
+  }
+  .step-list li .dot {
+    width: 22px;
+    height: 22px;
+    background: var(--green-light);
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-list .text { flex: 1; }
+  .step-list .text b { color: var(--green-dark); }
+
+  /* ── TIP / WARNING BOXES ── */
+  .tip {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    background: var(--teal-light);
+    border-left: 3px solid var(--teal);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--teal);
+  }
+  .tip-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .warning {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    background: var(--red-light);
+    border-left: 3px solid var(--red);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--red);
+  }
+
+  /* ── PUBLISH DIALOG MOCK ── */
+  .dialog-mock {
+    background: #fff;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    padding: 16px;
+    max-width: 320px;
+    margin: 10px auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .dialog-mock h4 {
+    font-size: 14px;
+    color: #202124;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .dialog-field {
+    margin-bottom: 10px;
+  }
+  .dialog-label {
+    font-size: 11px;
+    color: #5f6368;
+    margin-bottom: 3px;
+  }
+  .dialog-input {
+    width: 100%;
+    background: #f8f9fa;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    padding: 7px 10px;
+    font-size: 12px;
+    color: #3c4043;
+    font-family: monospace;
+  }
+  .dialog-url {
+    background: #e8f0fe;
+    border: 1px solid #c5d4f7;
+    color: #1a73e8;
+    font-family: monospace;
+    font-size: 11px;
+    padding: 7px 10px;
+    border-radius: 4px;
+    word-break: break-all;
+    margin-bottom: 10px;
+  }
+  .dialog-btn-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+  .dialog-btn {
+    padding: 7px 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+  }
+  .dialog-btn.primary { background: #1A73E8; color: #fff; }
+  .dialog-btn.secondary { background: transparent; color: #5f6368; border: 1px solid #dadce0; }
+
+  /* ── HIGHLIGHT ARROW ── */
+  .arrow-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--green);
+    font-weight: 600;
+    margin: 4px 0;
+  }
+  .arrow-label::before { content: '↓'; font-size: 16px; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    background: var(--green);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    vertical-align: middle;
+  }
+  .badge.gold { background: var(--gold); }
+  .badge.teal { background: var(--teal); }
+
+  /* ── LINK BOX ── */
+  .link-box {
+    background: #E8F0FE;
+    border: 1px solid #C5D4F7;
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-family: monospace;
+    font-size: 12px;
+    color: #1A73E8;
+    word-break: break-all;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
+  }
+  .copy-btn {
+    background: #1A73E8;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 28px;
+    padding: 16px 20px;
+    background: var(--green-dark);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .footer-left { color: #A5D6A7; font-size: 12px; }
+  .footer-left strong { color: #fff; font-size: 14px; display: block; margin-bottom: 2px; }
+  .footer-right { color: #81C784; font-size: 22px; }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: #fff; font-size: 12px; }
+    .page { padding: 12px; max-width: 100%; }
+    .header { border-radius: 8px; }
+    .step-card { break-inside: avoid; }
+    .gs-publish-btn.highlight { animation: none; box-shadow: 0 0 0 3px #A5D6A7; }
+    @page { margin: 1.5cm; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-tag">📋 Panduan Materi Ajar</div>
+    <h1>Cara Publish Website<br>di Google Sites</h1>
+    <div class="header-sub">SMPIT Citra Az-Zahra · Informatika Kelas VII · Kurikulum Merdeka</div>
+  </div>
+
+  <!-- CHECKLIST -->
+  <div class="checklist-box">
+    <div class="checklist-box-title">⭐ Checklist — Pastikan 5 hal ini sebelum publish!</div>
+    <div class="check-grid">
+      <div class="check-item"><div class="check-box"></div><span>Judul & identitas halaman sudah terisi</span></div>
+      <div class="check-item"><div class="check-box"></div><span>Minimal 3 halaman: Home, Isi, Tentang/Kontak</span></div>
+      <div class="check-item"><div class="check-box"></div><span>Ada gambar atau media pendukung</span></div>
+      <div class="check-item"><div class="check-box"></div><span>Semua teks lengkap, tidak ada placeholder</span></div>
+      <div class="check-item"><div class="check-box"></div><span>Website siap untuk dipublish ✅</span></div>
+    </div>
+  </div>
+
+  <!-- BAGIAN 1: PERSIAPAN -->
+  <div class="section-label">Bagian 1 — Persiapan Sebelum Publish</div>
+
+  <!-- STEP 1 -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">1</div>
+      <div>
+        <div class="step-title">Buka Google Sites & Login</div>
+      </div>
+      <div class="step-emoji">🌐</div>
+    </div>
+    <div class="step-body">
+      <ul class="step-list">
+        <li><div class="dot">a</div><div class="text">Buka browser (Chrome lebih disarankan) dan pergi ke <b>sites.google.com</b></div></li>
+        <li><div class="dot">b</div><div class="text">Login menggunakan <b>akun Google sekolah</b> kamu</div></li>
+        <li><div class="dot">c</div><div class="text">Klik nama proyek website kamu untuk membukanya</div></li>
+      </ul>
+      <div class="ui-mock" style="margin-top:12px;">
+        <div class="ui-mock-bar">
+          <div class="ui-mock-bar-dot" style="background:#FF5F57"></div>
+          <div class="ui-mock-bar-dot" style="background:#FFBD2E"></div>
+          <div class="ui-mock-bar-dot" style="background:#28CA41"></div>
+          <div class="ui-mock-bar-url"><span>sites.google.com</span></div>
+        </div>
+        <div class="ui-mock-body">
+          <div class="gs-toolbar">
+            <span class="gs-logo">Google Sites</span>
+            <input class="gs-title-input" type="text" value="Website Proyekku" readonly>
+            <button class="gs-publish-btn" style="background:#5f6368">Publish</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">2</div>
+      <div>
+        <div class="step-title">Cek Nama Website (Judul & Title)</div>
+      </div>
+      <div class="step-emoji">✏️</div>
+    </div>
+    <div class="step-body">
+      <ul class="step-list">
+        <li><div class="dot">a</div><div class="text">Pastikan <b>nama website</b> di pojok kiri atas sudah diisi (bukan "Untitled Site")</div></li>
+        <li><div class="dot">b</div><div class="text">Klik nama website untuk mengeditnya jika perlu</div></li>
+        <li><div class="dot">c</div><div class="text">Gunakan nama yang <b>jelas dan relevan</b> dengan topik website kamu</div></li>
+      </ul>
+      <div class="tip"><span class="tip-icon">💡</span>Contoh nama yang baik: "Blog Kesehatan Remaja", "Panduan Belajar Matematika", "Komunitas Pecinta Alam Kelas 7C"</div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">3</div>
+      <div>
+        <div class="step-title">Periksa Halaman-halaman Website</div>
+      </div>
+      <div class="step-emoji">📄</div>
+    </div>
+    <div class="step-body">
+      <ul class="step-list">
+        <li><div class="dot">a</div><div class="text">Klik ikon <b>Pages</b> (ikon halaman bertumpuk) di panel kanan untuk melihat daftar halaman</div></li>
+        <li><div class="dot">b</div><div class="text">Pastikan ada <b>minimal 3 halaman</b>: Home, Isi/Konten, dan Tentang atau Kontak</div></li>
+        <li><div class="dot">c</div><div class="text">Klik setiap halaman dan cek isinya — pastikan tidak ada teks kosong atau placeholder</div></li>
+      </ul>
+      <div class="ui-mock" style="margin-top:10px;">
+        <div class="gs-flex">
+          <div class="gs-page-panel">
+            <div style="font-weight:700;color:#3c4043;padding:4px 8px 8px;font-size:11px">PAGES</div>
+            <div class="gs-page-item active">🏠 Home</div>
+            <div class="gs-page-item">📝 Konten</div>
+            <div class="gs-page-item">👋 Tentang</div>
+            <div class="gs-page-add">+ Tambah halaman</div>
+          </div>
+          <div style="flex:1;padding:10px;font-size:12px;color:#5f6368;">
+            <div style="font-weight:600;color:#3c4043;margin-bottom:6px;">Halaman: Home ✅</div>
+            <div style="background:#E8F5E9;border-radius:4px;padding:8px;color:#2E7D32;font-size:11px;">Konten terisi lengkap<br>Ada gambar: ✅<br>Teks: ✅</div>
+          </div>
+        </div>
+      </div>
+      <div class="warning"><span style="font-size:16px;flex-shrink:0">⚠️</span><span>Kalau masih ada halaman kosong atau bertuliskan "Click to edit", isi dulu sebelum publish!</span></div>
+    </div>
+  </div>
+
+  <!-- BAGIAN 2: PUBLISH -->
+  <div class="section-label">Bagian 2 — Proses Publish</div>
+
+  <!-- STEP 4 -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num publish">4</div>
+      <div>
+        <div class="step-title">Klik Tombol "Publish" <span class="badge gold">Langkah Utama!</span></div>
+      </div>
+      <div class="step-emoji">🚀</div>
+    </div>
+    <div class="step-body">
+      <ul class="step-list">
+        <li><div class="dot">a</div><div class="text">Cari tombol <b>"Publish"</b> berwarna biru di pojok kanan atas halaman editor</div></li>
+        <li><div class="dot">b</div><div class="text">Klik tombol tersebut — akan muncul jendela dialog pengaturan publish</div></li>
+      </ul>
+      <div class="ui-mock" style="margin-top:12px;">
+        <div class="ui-mock-bar">
+          <div class="ui-mock-bar-dot" style="background:#FF5F57"></div>
+          <div class="ui-mock-bar-dot" style="background:#FFBD2E"></div>
+          <div class="ui-mock-bar-dot" style="background:#28CA41"></div>
+          <div class="ui-mock-bar-url"><span>sites.google.com/u/0/d/abc123.../edit</span></div>
+        </div>
+        <div class="ui-mock-body">
+          <div class="gs-toolbar">
+            <span class="gs-logo">Sites</span>
+            <input class="gs-title-input" type="text" value="Website Proyekku" readonly>
+            <button class="gs-publish-btn highlight">Publish</button>
+          </div>
+          <div style="padding:6px 12px;font-size:11px;color:#5f6368;background:#f8f9fa;">
+            ← Klik tombol "Publish" yang bersinar ini!
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num publish">5</div>
+      <div>
+        <div class="step-title">Atur Web Address (Alamat Website)</div>
+      </div>
+      <div class="step-emoji">🔗</div>
+    </div>
+    <div class="step-body">
+      <ul class="step-list">
+        <li><div class="dot">a</div><div class="text">Setelah klik Publish, akan muncul jendela <b>"Publish to the web"</b></div></li>
+        <li><div class="dot">b</div><div class="text">Di bagian <b>"Web address"</b>, ketik nama URL yang kamu inginkan (hanya huruf kecil, angka, dan tanda hubung)</div></li>
+        <li><div class="dot">c</div><div class="text">Contoh: kalau nama kamu Budi, bisa tulis <b>website-budi-7c</b></div></li>
+        <li><div class="dot">d</div><div class="text">Pastikan muncul tanda ✅ yang artinya nama URL tersedia</div></li>
+      </ul>
+
+      <div class="dialog-mock">
+        <h4>Publish to the web</h4>
+        <div class="dialog-field">
+          <div class="dialog-label">Web address</div>
+          <div style="display:flex;gap:6px;align-items:center;">
+            <input class="dialog-input" style="flex:1" type="text" value="website-budi-7c" readonly>
+            <span style="color:#34A853;font-weight:700;font-size:16px">✓</span>
+          </div>
+          <div style="font-size:10px;color:#5f6368;margin-top:3px;">URL tersedia!</div>
+        </div>
+        <div class="dialog-field">
+          <div class="dialog-label">Link website kamu akan menjadi:</div>
+          <div class="dialog-url">sites.google.com/view/website-budi-7c</div>
+        </div>
+        <div class="dialog-btn-row">
+          <button class="dialog-btn secondary">Cancel</button>
+          <button class="dialog-btn primary">Publish</button>
+        </div>
+      </div>
+
+      <div class="tip"><span class="tip-icon">💡</span>Pilih nama URL yang mudah diingat. Hindari nama yang terlalu panjang atau pakai karakter aneh.</div>
+    </div>
+  </div>
+
+  <!-- STEP 6 -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num publish">6</div>
+      <div>
+        <div class="step-title">Klik "Publish" di Dialog & Konfirmasi</div>
+      </div>
+      <div class="step-emoji">✅</div>
+    </div>
+    <div class="step-body">
+      <ul class="step-list">
+        <li><div class="dot">a</div><div class="text">Klik tombol <b>"Publish"</b> biru di dalam jendela dialog tersebut</div></li>
+        <li><div class="dot">b</div><div class="text">Jika ada pertanyaan tentang siapa yang bisa melihat website, pilih <b>"Anyone with the link"</b> atau <b>"Public"</b></div></li>
+        <li><div class="dot">c</div><div class="text">Klik <b>OK</b> atau <b>Confirm</b> jika muncul konfirmasi tambahan</div></li>
+        <li><div class="dot">d</div><div class="text">Tunggu beberapa detik hingga proses selesai</div></li>
+      </ul>
+
+      <div class="ui-mock" style="margin-top:10px;">
+        <div class="ui-mock-body" style="padding:14px;">
+          <div style="text-align:center;">
+            <div style="font-size:28px;margin-bottom:6px;">🎉</div>
+            <div style="font-weight:700;color:#34A853;font-size:14px;">Website berhasil dipublish!</div>
+            <div style="font-size:11px;color:#5f6368;margin-top:4px;">Your site has been published</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BAGIAN 3: SHARE -->
+  <div class="section-label">Bagian 3 — Salin & Bagikan Link</div>
+
+  <!-- STEP 7 -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num done">7</div>
+      <div>
+        <div class="step-title">Salin Link Website Kamu</div>
+      </div>
+      <div class="step-emoji">📋</div>
+    </div>
+    <div class="step-body">
+      <ul class="step-list">
+        <li><div class="dot">a</div><div class="text">Setelah publish berhasil, klik tombol <b>"Copy link"</b> atau cari ikon berbagi (⋮) → "Copy link"</div></li>
+        <li><div class="dot">b</div><div class="text">Atau buka tab baru dan pergi ke URL: <b>sites.google.com/view/[nama-url-kamu]</b></div></li>
+        <li><div class="dot">c</div><div class="text">Salin URL dari address bar browser</div></li>
+      </ul>
+      <div class="link-box">
+        <span style="flex:1">sites.google.com/view/website-budi-7c</span>
+        <button class="copy-btn">Copy</button>
+      </div>
+      <div class="tip"><span class="tip-icon">💡</span>Test dulu linknya — buka tab baru (Ctrl+T), paste linknya, dan pastikan website bisa dibuka dengan benar!</div>
+    </div>
+  </div>
+
+  <!-- STEP 8 -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num done">8</div>
+      <div>
+        <div class="step-title">Kumpulkan Link ke Guru</div>
+      </div>
+      <div class="step-emoji">📤</div>
+    </div>
+    <div class="step-body">
+      <ul class="step-list">
+        <li><div class="dot">a</div><div class="text">Tulis nama kamu dan link website di <b>papan tulis</b> atau kirim melalui form yang diberikan guru</div></li>
+        <li><div class="dot">b</div><div class="text">Pastikan link yang dikumpulkan <b>bisa dibuka</b> oleh orang lain, bukan hanya kamu sendiri</div></li>
+        <li><div class="dot">c</div><div class="text">Format pengumpulan: <b>Nama — Link Website</b></div></li>
+      </ul>
+      <div style="background:var(--grey);border-radius:var(--radius-sm);padding:12px;margin-top:10px;">
+        <div style="font-size:11px;font-weight:700;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">Contoh Pengumpulan</div>
+        <div style="font-size:13px;color:var(--dark);line-height:1.8">
+          <span style="font-weight:700">Budi Santoso</span> — sites.google.com/view/website-budi-7c<br>
+          <span style="font-weight:700">Siti Rahayu</span> — sites.google.com/view/siti-blog-7c
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MASALAH UMUM -->
+  <div class="section-label">Masalah Umum & Solusinya</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+    <div class="step-card" style="margin-bottom:0">
+      <div style="padding:14px 16px;">
+        <div style="font-weight:700;color:var(--red);margin-bottom:8px;font-size:13px;">❌ Tombol Publish tidak aktif</div>
+        <div style="font-size:12.5px;color:var(--text-muted);line-height:1.6">Kemungkinan ada error di halaman. Coba refresh browser dan cek apakah semua halaman sudah tersimpan (auto-save).</div>
+      </div>
+    </div>
+    <div class="step-card" style="margin-bottom:0">
+      <div style="padding:14px 16px;">
+        <div style="font-weight:700;color:var(--red);margin-bottom:8px;font-size:13px;">❌ URL sudah dipakai orang lain</div>
+        <div style="font-size:12.5px;color:var(--text-muted);line-height:1.6">Ganti nama URL dengan menambahkan angka atau huruf unik. Contoh: website-budi-7c-2026</div>
+      </div>
+    </div>
+    <div class="step-card" style="margin-bottom:0">
+      <div style="padding:14px 16px;">
+        <div style="font-weight:700;color:var(--red);margin-bottom:8px;font-size:13px;">❌ Link tidak bisa dibuka teman</div>
+        <div style="font-size:12.5px;color:var(--text-muted);line-height:1.6">Pastikan pengaturan akses sudah "Anyone with the link" atau "Public". Buka ⋮ → Settings → Visibility.</div>
+      </div>
+    </div>
+    <div class="step-card" style="margin-bottom:0">
+      <div style="padding:14px 16px;">
+        <div style="font-weight:700;color:var(--red);margin-bottom:8px;font-size:13px;">❌ Perubahan tidak muncul setelah publish</div>
+        <div style="font-size:12.5px;color:var(--text-muted);line-height:1.6">Setiap kali ada perubahan, kamu harus klik Publish lagi. Perubahan otomatis tersimpan tapi tidak otomatis terpublish.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      <strong>🌟 Selamat! Website kamu sudah online!</strong>
+      Jaga terus semangat berkarya. "Wa an laysa lil-insāni illā mā sa'ā" — Q.S. An-Najm: 39
+    </div>
+    <div class="footer-right">🚀</div>
+  </div>
+
+</div>
+</body>
+</html>
